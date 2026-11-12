@@ -28,3 +28,8 @@ Cada carpeta tiene un `README.md` con lo que va ahí. Docker (`Dockerfile` y `do
 - [ ] Cómo correrlo en local (ver `backend/README.md` y `frontend/README.md`)
 - [ ] Cómo correrlo con Docker (`docker compose up --build`)
 - [ ] Enlace al despliegue
+
+
+
+
+# TODO: modelado de datos, daigrama
