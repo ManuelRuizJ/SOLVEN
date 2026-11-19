@@ -1,0 +1,20 @@
+# Dependencias de backend
+# API
+fastapi==0.165.0
+uvicorn[standard]==0.54.0
+
+# Base de datos
+sqlalchemy==2.1.9
+psycopg[binary]==3.3.9
+alembic==1.20.1
+
+# Configuracion y validacion
+pydantic-settings==2.16.3
+email-validator==2.4.0
+
+# Seguridad
+pyjwt==2.15.1
+pwdlib[bcrypt]==0.4.2
+
+# Inteligencia artificial
+google-genai==3.6.1
