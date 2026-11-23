@@ -17,7 +17,7 @@ En este sentido, SOLVEN busca demostrar la relevancia de la creación de  APIs p
 ```
 solven/
 ├── docs/        # Arquitectura, modelo de datos, contrato de la API, indicadores y declaración de uso de IA
-├── backend/     # API REST con FastAPI + SQLAlchemy + Alembic + PostgreSQL
+├── backend/     # API REST con FastAPI + SQLModel + PostgreSQL
 └── frontend/    # Interfaz con React (Vite)
 ```
 
