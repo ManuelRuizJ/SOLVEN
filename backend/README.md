@@ -4,14 +4,14 @@
 ```
 backend/
 ├── app/
-│   ├── main.py          # TODO: app FastAPI, router /api/v1, CORS
-│   ├── config.py        # TODO: Pydantic Settings (lee el .env)
-│   ├── database.py      # TODO: engine, crear_tablas() y SessionDep de SQLModel
-│   ├── security.py      # TODO: hash de contraseñas y JWT
-│   ├── dependencies.py  # TODO: get_current_user, require_role("admin")
+│   ├── main.py          # app FastAPI, router /api, CORS y /api/health
+│   ├── config.py        # Pydantic Settings (lee el .env)
+│   ├── database.py      # engine, crear_tablas() y SessionDep de SQLModel
+│   ├── security.py      # hash de contraseñas y JWT
+│   ├── dependencies.py  # get_current_user (UsuarioActual)
 │   ├── models.py        # tablas SQLModel (usuarios, categorias, movimientos, recomendaciones)
-│   ├── schemas/         # TODO: modelos Pydantic de entrada/salida
-│   ├── routers/         # TODO: auth, cuentas, categorias, movimientos, presupuestos, indicadores, analisis, admin
+│   ├── schemas.py       # modelos Pydantic de entrada/salida
+│   ├── routers/         # auth (listo); TODO: transactions, metrics, insights
 │   └── services/        # TODO: cálculo de indicadores e integración con la IA
 ├── requirements.txt     # TODO: dependencias desde un venv limpio 
 └── .env.example         # TODO: variables (DATABASE_URL, JWT_SECRET, IA_PROVIDER...)

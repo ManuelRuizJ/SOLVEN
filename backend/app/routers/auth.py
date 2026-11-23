@@ -5,6 +5,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlmodel import select
 
 from app.database import SessionDep
+from app.dependencies import UsuarioActual
 from app.models import Usuario
 from app.schemas import Token, UsuarioIn, UsuarioPublico
 from app.security import crear_token, hashear_contrasena, verificar_contrasena
@@ -43,3 +44,8 @@ def iniciar_sesion(
             headers={"WWW-Authenticate": "Bearer"},
         )
     return Token(access_token=crear_token(usuario.id))
+
+
+@router.get("/me", response_model=UsuarioPublico)
+def usuario_actual(usuario: UsuarioActual):
+    return usuario
