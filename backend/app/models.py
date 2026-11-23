@@ -25,6 +25,9 @@ class Usuario(SQLModel, table=True):
     movimientos: list["Movimiento"] = Relationship(
         back_populates="usuario", cascade_delete=True
     )
+    recomendaciones: list["Recomendacion"] = Relationship(
+        back_populates="usuario", cascade_delete=True
+    )
 
 
 class Categoria(SQLModel, table=True):
@@ -64,3 +67,16 @@ class Movimiento(SQLModel, table=True):
 
     usuario: Usuario | None = Relationship(back_populates="movimientos")
     categoria: Categoria | None = Relationship(back_populates="movimientos")
+
+
+class Recomendacion(SQLModel, table=True):
+    __tablename__ = "recomendaciones"
+
+    id: int | None = Field(default=None, primary_key=True)
+    usuario_id: int = Field(foreign_key="usuarios.id", index=True, ondelete="CASCADE")
+    mes: str = Field(max_length=7)  # 'AAAA-MM'
+    contenido: str = Field(sa_type=Text)
+    meta_ahorro: Decimal | None = Field(default=None, max_digits=12, decimal_places=2)
+    generado_en: datetime = Field(default_factory=ahora, sa_type=DateTime(timezone=True))
+
+    usuario: Usuario | None = Relationship(back_populates="recomendaciones")

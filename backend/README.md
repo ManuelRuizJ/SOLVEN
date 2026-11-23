@@ -9,7 +9,7 @@ backend/
 │   ├── database.py      # TODO: engine, crear_tablas() y SessionDep de SQLModel
 │   ├── security.py      # TODO: hash de contraseñas y JWT
 │   ├── dependencies.py  # TODO: get_current_user, require_role("admin")
-│   ├── models/          # TODO: tablas SQLModel (usuarios, categorias, movimientos, recomendaciones)
+│   ├── models.py        # tablas SQLModel (usuarios, categorias, movimientos, recomendaciones)
 │   ├── schemas/         # TODO: modelos Pydantic de entrada/salida
 │   ├── routers/         # TODO: auth, cuentas, categorias, movimientos, presupuestos, indicadores, analisis, admin
 │   └── services/        # TODO: cálculo de indicadores e integración con la IA
