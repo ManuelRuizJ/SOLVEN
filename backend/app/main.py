@@ -7,6 +7,7 @@ from sqlmodel import select
 
 from app.config import settings
 from app.database import SessionDep, crear_tablas
+from app.routers import auth
 
 
 @asynccontextmanager
@@ -43,5 +44,7 @@ def health(session: SessionDep):
         )
     return {"status": "ok", "database": "ok"}
 
+
+api.include_router(router=auth.router)
 
 app.include_router(api)
