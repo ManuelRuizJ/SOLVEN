@@ -1,21 +1,21 @@
-from collections.abc import Iterator
+from typing import Annotated
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
+from fastapi import Depends
+from sqlmodel import Session, SQLModel, create_engine
 
 from app.config import settings
 
-engine = create_engine(settings.database_url, pool_pre_ping=True)
-SessionLocal = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False)
+engine = create_engine(settings.database_url, echo=settings.sql_echo)
 
 
-class Base(DeclarativeBase):
-    """Clase base"""
+def crear_tablas() -> None:
+    from app import models
+    SQLModel.metadata.create_all(engine)
 
 
-def get_db() -> Iterator[Session]:
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+def get_session():
+    with Session(engine) as session:
+        yield session
+
+
+SessionDep = Annotated[Session, Depends(get_session)]

@@ -1,16 +1,24 @@
-from typing import Annotated
+from contextlib import asynccontextmanager
 
-from fastapi import APIRouter, Depends, FastAPI, HTTPException, status
+from fastapi import APIRouter, FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.orm import Session
+from sqlmodel import select
 
 from app.config import settings
-from app.database import get_db
+from app.database import SessionDep, crear_tablas
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    crear_tablas()
+    yield
+
 
 app = FastAPI(
-    title="SOLVEN API", description="API de finanzas personales para estudiantes"
+    title="SOLVEN API",
+    description="API de finanzas personales para estudiantes",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
@@ -25,9 +33,9 @@ api = APIRouter(prefix="/api")
 
 
 @api.get("/health", tags=["Salud"])
-def health(db: Annotated[Session, Depends(get_db)]):
+def health(session: SessionDep):
     try:
-        db.execute(text("SELECT 1"))
+        session.exec(select(1))
     except SQLAlchemyError:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,

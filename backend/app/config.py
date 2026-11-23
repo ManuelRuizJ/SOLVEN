@@ -6,6 +6,7 @@ class Settings(BaseSettings):
 
     # Base de datos
     database_url: str
+    sql_echo: bool = False
 
     # Autenticación JWT
     jwt_secret_key: str = ""
