@@ -86,18 +86,42 @@ Se definen en `backend/.env`, que nunca se sube al repositorio. La plantilla est
    ```
 3. Abrir la documentación en http://localhost:8000/docs y probar `GET /api/health`, que debe responder `{"status": "ok", "database": "ok"}`.
 
+### Usuario de prueba
+
+| Correo | Contraseña |
+|---|---|
+| `admin@mail.com` | `admin1234` |
+
+La base de datos empieza vacía, así que la primera vez hay que crear el usuario con `POST /api/auth/register` desde `/docs`:
+
+```json
+{ "nombre": "Admin", "correo": "admin@mail.com", "contrasena": "admin1234" }
+```
+
+Después, en `/docs`, se presiona **Authorize** y se escribe el correo en `username` y la contraseña en `password`. Con eso, Swagger manda el token en cada petición y `GET /api/auth/me` devuelve los datos del usuario.
+
+### Endpoints disponibles
+
+| Método | Ruta | Descripción | Requiere token |
+|---|---|---|---|
+| GET | `/api/health` | Verifica la conexión con la base de datos | No |
+| POST | `/api/auth/register` | Registra un usuario (JSON: `nombre`, `correo`, `contrasena`) | No |
+| POST | `/api/auth/login` | Inicia sesión (formulario: `username` = correo, `password`) y devuelve el JWT | No |
+| GET | `/api/auth/me` | Devuelve el usuario del token | Sí |
+
 ## Estado del avance
 
 - [x] Repositorio con git flow (`main`, `develop`, `feature/*`)
 - [x] Resumen ejecutivo, diagrama ER y diagrama de arquitectura
 - [x] Configuración por variables de entorno (`.env.example`)
 - [x] Base de FastAPI conectada a PostgreSQL con SQLModel y endpoint `/api/health`
-- [ ] Modelos de datos (usuarios, categorías, movimientos, recomendaciones)
-- [ ] Registro e inicio de sesión con JWT
+- [x] Modelos de datos (usuarios, categorías, movimientos, recomendaciones)
+- [x] Registro e inicio de sesión con JWT
 - [ ] Registro de movimientos en lenguaje natural con Gemini
 - [ ] Métricas e insights mensuales
 - [ ] Frontend en React
 - [ ] Docker Compose y despliegue
+
 
 ## Despliegue
 
