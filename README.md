@@ -122,6 +122,7 @@ Después, en `/docs`, se presiona **Authorize** y se escribe el correo en `usern
 - [ ] Frontend en React
 - [ ] Docker Compose y despliegue
 
+
 ## Despliegue
 
 Pendiente. El enlace se agregará cuando el proyecto esté desplegado.
