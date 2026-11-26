@@ -136,12 +136,12 @@ export default function Login() {
         </form>
 
         <p className="mt-7 text-center text-xs leading-relaxed text-[#91a8b9]">
-          ¿Aún no tienes una cuenta? Regístrate
+          ¿Aún no tienes una cuenta?
           <Link
             to="/registro"
             className="ml-2 font-semibold text-[#65cbe5] hover:underline"
           >
-            Crear cuenta
+            Regístrate
           </Link>
         </p>
       </section>
