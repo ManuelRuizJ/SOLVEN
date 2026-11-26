@@ -1,0 +1,7 @@
+export default function Categorias() {
+  return (
+    <div className="p-8">
+      <h1 className="text-3xl font-bold">Categorias</h1>
+    </div>
+  )
+}
