@@ -534,3 +534,127 @@ body {
     transition: none;
   }
 }
+.finance-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-height: 46px;
+  padding: 12px 16px;
+
+  background: rgba(20, 41, 55, 0.48);
+  border: 1px solid var(--solven-border);
+  border-radius: 14px;
+
+  color: var(--solven-muted);
+}
+
+.finance-search input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+
+  background: transparent;
+  color: var(--solven-text);
+  font-size: 13px;
+  outline: none;
+}
+
+.finance-search input::placeholder {
+  color: var(--solven-muted);
+}
+
+.finance-search:focus-within {
+  border-color: var(--solven-accent);
+}
+
+.finance-search input:disabled {
+  cursor: not-allowed;
+}
+
+.finance-secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 46px;
+  padding: 12px 20px;
+
+  background: rgba(20, 41, 55, 0.48);
+  border: 1px solid var(--solven-border);
+  border-radius: 14px;
+
+  color: var(--solven-text);
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.finance-secondary-button:hover:not(:disabled) {
+  background: rgba(101, 203, 229, 0.08);
+}
+
+.finance-secondary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.finance-secondary-button:focus-visible {
+  outline: 2px solid var(--solven-accent);
+  outline-offset: 3px;
+}
+
+.finance-table-container {
+  overflow: hidden;
+
+  background: rgba(20, 41, 55, 0.35);
+  border: 1px solid var(--solven-border);
+  border-radius: 20px;
+
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+.finance-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+}
+
+.finance-table thead {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.finance-table th {
+  padding: 18px 20px;
+
+  border-bottom: 1px solid var(--solven-border);
+
+  color: var(--solven-muted);
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.finance-table th:last-child {
+  text-align: right;
+}
+
+.finance-table td {
+  padding: 16px 20px;
+  font-size: 13px;
+}
+
+.finance-table tbody tr + tr {
+  border-top: 1px solid var(--solven-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .finance-secondary-button {
+    transition: none;
+  }
+}
