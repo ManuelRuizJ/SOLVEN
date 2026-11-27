@@ -1,4 +1,4 @@
-import {ArrowDownLeft,ArrowUpRight,ArrowLeftRight,Wallet,Plus,Search,ListFilter,Info} from 'lucide-react'
+import {ArrowDownLeft,ArrowUpRight,ArrowLeftRight,Wallet,Plus,Search,ListFilter,} from 'lucide-react'
 
 const summary = [
   {

@@ -1,10 +1,5 @@
 import {
-  Target,
-  CircleCheck,
-  TriangleAlert,
-  Plus,
-  Info,
-} from "lucide-react"
+  Target,CircleCheck,TriangleAlert,Plus,} from "lucide-react"
 
 const budgetSummary = [
   {

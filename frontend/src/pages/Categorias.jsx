@@ -1,4 +1,4 @@
-import {ArrowDownLeft,ArrowUpRight,Layers,Plus,Lightbulb,Info} from 'lucide-react'
+import {ArrowDownLeft,ArrowUpRight,Layers,Plus,Lightbulb,} from 'lucide-react'
 
 const categoryGroups = [
   {

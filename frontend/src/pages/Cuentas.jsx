@@ -1,4 +1,4 @@
-import {Wallet,Landmark,CreditCard,Banknote,Plus,Info} from "lucide-react"
+import {Wallet,Landmark,CreditCard,Banknote,Plus,} from "lucide-react"
 
 const accountTypes = [
   {
