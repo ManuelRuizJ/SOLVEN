@@ -658,3 +658,14 @@ body {
     transition: none;
   }
 }
+
+.budget-progress-track {
+  width: 100%;
+  height: 12px;
+
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--solven-border);
+  border-radius: 50px;
+
+  overflow: hidden;
+}

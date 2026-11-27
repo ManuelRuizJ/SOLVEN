@@ -124,7 +124,7 @@ export default function Dashboard() {
           <div className="flex items-center justify-center gap-2 mt-4 text-xs text-[#91a8b9]">
             <Info size={14} className="shrink-0" />
             <p>
-              Asistente financiero en desarrollo.
+              Asistente financiero en desarrollo :P.
             </p>
           </div>
         </div>

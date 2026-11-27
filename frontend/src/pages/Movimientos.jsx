@@ -143,10 +143,6 @@ export default function Movimientos() {
         </div>
       </div>
       <div className="flex items-center justify-center gap-2 mt-6 text-xs text-[#91a8b9]">
-        <Info size={14} className="shrink-0" />
-        <p>
-           Pendiente de integración con FastAPI.
-        </p>
       </div>
     </section>
   )
