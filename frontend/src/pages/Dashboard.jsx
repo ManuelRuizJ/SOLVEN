@@ -62,7 +62,7 @@ export default function Dashboard() {
             </h1>
 
             <p className="mt-5 text-sm sm:text-lg text-[#91a8b9] leading-relaxed">
-              ¿Qué tal tus finanzas hoy finanzas hoy?
+              ¿Cómo van tus finanzas hoy finanzas hoy?
             </p>
 
           </div>
