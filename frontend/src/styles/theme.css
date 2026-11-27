@@ -391,3 +391,146 @@ body {
     transform: none;
   }
 }
+.finance-page {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.finance-card {
+  padding: 24px;
+
+  background: rgba(20, 41, 55, 0.48);
+  border: 1px solid var(--solven-border);
+  border-radius: 20px;
+
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.finance-balance-card {
+  padding: 30px;
+
+  background: linear-gradient(
+    125deg,
+    rgba(53, 108, 130, 0.32),
+    rgba(16, 35, 48, 0.7)
+  );
+
+  border: 1px solid rgba(101, 203, 229, 0.2);
+  border-radius: 24px;
+
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+
+  box-shadow:
+    0 15px 50px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.finance-icon {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(101, 203, 229, 0.09);
+  border: 1px solid rgba(101, 203, 229, 0.15);
+  border-radius: 14px;
+
+  color: var(--solven-accent);
+}
+
+.finance-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 44px;
+  padding: 12px 20px;
+
+  background: linear-gradient(
+    110deg,
+    #a1e7f7,
+    #49b2d1
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+
+  color: #071923;
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.finance-primary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.finance-primary-button:focus-visible {
+  outline: 2px solid var(--solven-accent);
+  outline-offset: 3px;
+}
+
+.finance-empty-state {
+  min-height: 280px;
+  padding: 40px 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(20, 41, 55, 0.28);
+  border: 1px dashed var(--solven-border);
+  border-radius: 22px;
+
+  text-align: center;
+}
+
+.finance-empty-icon {
+  width: 66px;
+  height: 66px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(101, 203, 229, 0.08);
+  border: 1px solid rgba(101, 203, 229, 0.15);
+  border-radius: 20px;
+
+  color: var(--solven-accent);
+}
+
+@media (max-width: 640px) {
+  .finance-page {
+    padding: 18px 10px;
+  }
+
+  .finance-balance-card {
+    padding: 22px;
+  }
+
+  .finance-card {
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .finance-primary-button {
+    transition: none;
+  }
+}
