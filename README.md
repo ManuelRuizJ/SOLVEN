@@ -23,7 +23,7 @@ En este sentido, SOLVEN busca demostrar la relevancia de la creación de  APIs p
 ## Tecnologías
 
 - **Backend:** Python 3.14, FastAPI, SQLModel, Pydantic Settings
-- **Base de datos:** PostgreSQL 18 (en un contenedor de Docker)
+- **Base de datos:** PostgreSQL 18 con Docker Compose
 - **Seguridad:** JWT (PyJWT) y hash de contraseñas con bcrypt (pwdlib)
 - **Inteligencia artificial:** Google Gemini (`google-genai`), con un modo `mock` para desarrollo
 - **Frontend:** React + Vite (pendiente)
@@ -32,9 +32,10 @@ En este sentido, SOLVEN busca demostrar la relevancia de la creación de  APIs p
 
 ```
 solven/
-├── docs/        # Resumen ejecutivo, diagramas ER y de arquitectura, bitácora
-├── backend/     # API REST con FastAPI + SQLModel + PostgreSQL
-└── frontend/    # Interfaz con React (Vite)
+├── docs/          # Resumen ejecutivo, diagramas ER y de arquitectura, bitácora, reparto de tareas
+├── backend/       # API REST con FastAPI + SQLModel + PostgreSQL
+├── frontend/      # Interfaz con React (Vite)
+└── compose.yaml   # PostgreSQL en Docker
 ```
 
 ## Documentación
@@ -43,18 +44,23 @@ solven/
 - Diagrama entidad-relación: [imagen](docs/diagrama-er.png) · [fuente draw.io](docs/diagrama-er.drawio)
 - [Diagrama de arquitectura](docs/diagrama-arquitectura.jpg)
 - [Bitácora del equipo y declaración de uso de IA](docs/BITACORA.md)
+- [Reparto de tareas](docs/TAREAS.md)
 
 ## Instalación
 
-Requisitos: Python 3.12 o superior, Docker y Git.
+Requisitos:
+
+- [Git](https://git-scm.com/downloads)
+- [Python 3.12 o superior](https://www.python.org/downloads/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) 
+- [Node.js 20 o superior](https://nodejs.org/) para el frontend
+
+Clonar el repositorio y cambiarse a `develop`:
 
 ```bash
 git clone https://github.com/ManuelRuizJ/SOLVEN.git
-cd SOLVEN/backend
-python -m venv venv
-source venv/bin/activate        # En Windows: venv\Scripts\activate
-pip install -r requirements.txt
-cp .env.example .env            # Después llenar los valores
+cd SOLVEN
+git ccheckout develop
 ```
 
 ## Variables de entorno
@@ -75,16 +81,89 @@ Se definen en `backend/.env`, que nunca se sube al repositorio. La plantilla est
 
 ## Cómo ejecutarlo en local
 
-1. Levantar PostgreSQL en Docker (la primera vez):
-   ```bash
-   docker run -d --name solven-db -e POSTGRES_USER=solven -e POSTGRES_PASSWORD=solven -e POSTGRES_DB=solven -p 5432:5432 -v solven-db:/var/lib/postgresql postgres:18
-   ```
-   Las siguientes veces basta con `docker start solven-db`.
-2. Arrancar la API desde `backend/` con el entorno virtual activo:
-   ```bash
-   fastapi dev app/main.py
-   ```
-3. Abrir la documentación en http://localhost:8000/docs y probar `GET /api/health`, que debe responder `{"status": "ok", "database": "ok"}`.
+Se usan tres terminales, una para cada parte. Todos los comandos parten de la carpeta `SOLVEN/`.
+
+### 1. Base de datos (Docker)
+
+Con Docker Desktop abierto:
+
+```bash
+docker compose up -d
+```
+
+Esto descarga PostgreSQL 18 la primera vez y deja corriendo el contenedor `solven-db` en el puerto `5432`, con usuario, contraseña y base `solven`. Los datos se guardan en el volumen `solven-db`, así que no se pierden al apagarlo.
+
+| Acción | Comando |
+|---|---|
+| Ver si está corriendo | `docker compose ps` (debe decir `healthy`) |
+| Apagarlo | `docker compose stop` |
+| Volver a encenderlo | `docker compose up -d` |
+| Entrar a la base con SQL | `docker exec -it solven-db psql -U solven -d solven` |
+| Borrar la base y empezar de cero | `docker compose down -v` |
+
+### 2. Backend (FastAPI)
+
+La primera vez:
+
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate          # En Windows: venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env              # En Windows: copy .env.example .env
+```
+
+En `backend/.env` hay que poner estos dos valores:
+
+```env
+DATABASE_URL=postgresql+psycopg://solven:solven@localhost:5432/solven
+JWT_SECRET_KEY=
+```
+
+El valor de `JWT_SECRET_KEY` se genera con este comando:
+
+```bash
+python -c "import secrets; print(secrets.token_hex(32))"
+```
+
+Las siguientes veces:
+
+```bash
+cd backend
+source venv/bin/activate          # En Windows: venv\Scripts\activate
+fastapi dev app/main.py
+```
+
+La API queda en http://localhost:8000. La documentación interactiva está en http://localhost:8000/docs, y `GET /api/health` debe responder `{"status": "ok", "database": "ok"}`. Las tablas se crean solas al arrancar.
+
+### 3. Frontend (React)
+
+La primera vez:
+
+```bash
+cd frontend
+npm install
+cp .env.example .env              # En Windows: copy .env.example .env
+```
+
+Las siguientes veces:
+
+```bash
+cd frontend
+npm run dev
+```
+
+La interfaz queda en http://localhost:5173.
+
+### Problemas comunes
+
+| Síntoma | Solución |
+|---|---|
+| `/api/health` responde 503 | La base no está encendida: `docker compose up -d` |
+| `port 5432 is already allocated` | Otro PostgreSQL usa el puerto. En Linux: `sudo systemctl stop postgresql` |
+| `fastapi: command not found` | Falta activar el entorno virtual: `source venv/bin/activate` |
+| `ModuleNotFoundError` | Falta instalar dependencias: `pip install -r requirements.txt` |
+| El frontend no se conecta a la API | Revisar que el backend esté corriendo y que `frontend/.env` tenga `VITE_API_URL=http://localhost:8000/api` |
 
 ### Usuario de prueba
 
@@ -121,7 +200,6 @@ Después, en `/docs`, se presiona **Authorize** y se escribe el correo en `usern
 - [ ] Métricas e insights mensuales
 - [ ] Frontend en React
 - [ ] Docker Compose y despliegue
-
 
 ## Despliegue
 
