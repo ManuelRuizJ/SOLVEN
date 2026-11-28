@@ -11,6 +11,22 @@
 * Diseño del diagrama de arquitectura
 * Creación del .gitignore del proyecto
 * Estructura de la bitácora
+* Creación de feature/frontend para trabajar independiente.
+* Configuracion de las rutas y estructura de las carpetas del front
+* Variables de entorno para la comunicación con el backend.
+* Implementación del cliente HTTP y los servicios de autenticación.
+* Implementación del contexto de autenticación mediante JWT para administrar la sesión del usuario
+* Desarrollo del front con un diseño estilo Liquid Glass inspirado en mi ASE 3 para darle el toque moderno
+* Desarrollo del login y conexión con el servicio de auth del backend
+* Interfaz del registro y formularios
+* Implementación de rutas protegidas y control de acceso a las páginas privadas.
+* Integración de los cambios de develop en feature/frontend para realizar pruebas de comunicación con el backend
+* Hice un entrono local con Docker, Postgre y FastAPI para probar los auth en el login
+* Implementación del sidebar, navegacion entre módulos y logout
+* Desarrollo de: cuentas, movimientos, categorías, presupuesto y análisis financiero (con Recharts para las gráficas de ingresos y gastos)
+
+
+
 
 ## Jesus
 * Creación del repo en GitHub y gestión de colaboradores (Antonio, Sebas (y el profe))
@@ -31,8 +47,11 @@
 ---
 ## 2. Declaración de IA
 
-###Antonio
-* **Herramientas utilizadas:** Gemini y Gemini
+### Antonio
+* **Herramientas utilizadas:** Gemini y Chat
 * **Propósito del uso**
     *Claude la utilicé más que nada antes de mandar el resumen a la expo. Teníamos que hacer una introducción larga y con fuentes, entonces me apoyé más de la IA para rellenar esos espacios
     *Gemini para resolver mis dudas sobre el flujo del trabajo con Git
+    *Chat generó el estilo CSS para que la interfaz luciera estilo liquid glass.
+    *Sugirió Recharts para visualizar de forma sencilla las finanzas.
+    *Me ayudó a resolver mis conexiones al configurar mi docker y el front con FastAPI. Más que nada funcionó para tener una mayor comprensión del funcionamiento de docker.
